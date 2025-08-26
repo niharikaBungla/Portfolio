@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Futuristic Portfolio Design System - Inspired by flowing gradients and neon aesthetics */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Base Colors - Dark theme foundation */
+    --background: 220 27% 4%;
+    --surface: 220 25% 6%;
+    --surface-elevated: 220 23% 8%;
+    --foreground: 220 15% 95%;
+    --muted-foreground: 220 15% 65%;
+    
+    /* Primary Gradient Colors */
+    --primary-start: 258 90% 66%;  /* Vibrant purple */
+    --primary-middle: 252 83% 57%; /* Purple-blue */
+    --primary-end: 243 75% 59%;    /* Deep blue */
+    
+    /* Accent Colors */
+    --accent-cyan: 180 100% 70%;   /* Neon cyan */
+    --accent-pink: 320 85% 70%;    /* Neon pink */
+    --accent-purple: 270 95% 75%;  /* Electric purple */
+    
+    /* Glassmorphic Elements */
+    --glass-bg: 220 25% 8% / 0.1;
+    --glass-border: 220 35% 25% / 0.2;
+    --glass-hover: 220 25% 12% / 0.15;
+    
+    /* Interactive States */
+    --glow-primary: 258 90% 66% / 0.4;
+    --glow-accent: 180 100% 70% / 0.3;
+    --glow-soft: 220 35% 85% / 0.1;
+    
+    /* Semantic Colors */
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    --error: 0 84% 60%;
+    
+    /* Component specific */
+    --card: var(--surface-elevated);
+    --card-foreground: var(--foreground);
+    --border: 220 35% 15%;
+    --input: 220 35% 10%;
+    --ring: var(--primary-middle);
+    --radius: 0.75rem;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, 
+      hsl(var(--primary-start)), 
+      hsl(var(--primary-middle)) 50%, 
+      hsl(var(--primary-end))
+    );
+    --gradient-glow: radial-gradient(circle, 
+      hsl(var(--glow-primary)) 0%, 
+      transparent 70%
+    );
+    --gradient-mesh: conic-gradient(from 0deg, 
+      hsl(var(--primary-start)) 0deg, 
+      hsl(var(--accent-cyan)) 120deg, 
+      hsl(var(--primary-end)) 240deg, 
+      hsl(var(--primary-start)) 360deg
+    );
+    
+    /* Animation Variables */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-elastic: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Shadow System */
+    --shadow-glow: 0 0 30px hsl(var(--glow-primary));
+    --shadow-elevation: 0 10px 40px -10px hsl(220 25% 0% / 0.3);
+    --shadow-float: 0 20px 60px -15px hsl(var(--glow-soft));
+  }
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glass morphism utilities */
+  .glass {
+    @apply bg-glass-bg backdrop-blur-glass border border-glass-border;
+  }
+  
+  .glass-hover:hover {
+    @apply bg-glass-hover border-glow-soft;
+  }
+  
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 30px hsl(var(--glow-primary));
+  }
+  
+  .glow-accent {
+    box-shadow: 0 0 25px hsl(var(--glow-accent));
+  }
+  
+  .glow-soft {
+    box-shadow: 0 0 20px hsl(var(--glow-soft));
+  }
+  
+  /* Gradient text */
+  .text-gradient {
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Floating orbs */
+  .floating-orb {
+    @apply absolute rounded-full blur-sm opacity-60 animate-float;
+    background: radial-gradient(circle, hsl(var(--accent-cyan)) 0%, transparent 70%);
+  }
+  
+  /* Interactive elements */
+  .interactive-hover {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:scale-105 hover:glow-primary;
+  }
+  
+  .button-glow {
+    @apply relative overflow-hidden;
+    @apply before:absolute before:inset-0 before:bg-gradient-primary before:opacity-0;
+    @apply hover:before:opacity-20 before:transition-opacity before:duration-300;
+  }
+  
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--surface));
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, hsl(var(--primary-start)), hsl(var(--primary-end)));
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, hsl(var(--accent-cyan)), hsl(var(--accent-purple)));
+  }
+}
